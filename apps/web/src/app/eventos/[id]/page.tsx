@@ -1,10 +1,14 @@
 import { notFound } from 'next/navigation';
-import { obtenerEventoPorId } from '../../../lib/eventos-mock';
+import { obtenerEntradasPorEvento, obtenerEventoPorId, obtenerTiposPorEvento } from '../../../lib/eventos-mock';
 
 export default async function DetalleEventoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const evento = obtenerEventoPorId(id);
   if (!evento) return notFound();
+
+  const tipos = obtenerTiposPorEvento(id);
+  const entradas = obtenerEntradasPorEvento(id);
+  const entradasValidadas = entradas.filter((entrada) => entrada.estado === 'validada').length;
 
   return (
     <section>
@@ -13,7 +17,18 @@ export default async function DetalleEventoPage({ params }: { params: Promise<{ 
           <h1>{evento.nombre}</h1>
           <p>{evento.subtitulo}</p>
         </div>
-        <a href={`/eventos/${evento.id}/editar`}><button>Editar evento</button></a>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <a href={`/eventos/${evento.id}/tipos-entrada`}><button style={{ background: '#1d4ed8' }}>Tipos de entrada</button></a>
+          <a href={`/eventos/${evento.id}/entradas`}><button style={{ background: '#4b5563' }}>Entradas emitidas</button></a>
+          <a href={`/eventos/${evento.id}/editar`}><button>Editar evento</button></a>
+        </div>
+      </div>
+
+      <div className="grid grid-4" style={{ marginBottom: 16 }}>
+        <article className="card"><small>Tipos activos</small><div className="metric">{tipos.length}</div></article>
+        <article className="card"><small>Entradas emitidas</small><div className="metric">{entradas.length}</div></article>
+        <article className="card"><small>Entradas validadas</small><div className="metric">{entradasValidadas}</div></article>
+        <article className="card"><small>Validación</small><div className="metric">{entradas.length ? Math.round((entradasValidadas / entradas.length) * 100) : 0}%</div></article>
       </div>
 
       <div className="grid" style={{ gridTemplateColumns: '2fr 1fr' }}>
@@ -31,12 +46,11 @@ export default async function DetalleEventoPage({ params }: { params: Promise<{ 
         </article>
 
         <article className="card">
-          <h3>Métricas del evento</h3>
-          <p><strong>Entradas emitidas:</strong> {evento.metricas?.entradasEmitidas ?? 0}</p>
-          <p><strong>Accesos validados:</strong> {evento.metricas?.accesosValidados ?? 0}</p>
+          <h3>Actividad comercial</h3>
           <p><strong>Ventas:</strong> ${evento.metricas?.ventasTotales?.toLocaleString('es-AR') ?? 0}</p>
+          <p><strong>Accesos validados:</strong> {evento.metricas?.accesosValidados ?? 0}</p>
           <hr style={{ borderColor: '#2f3647' }} />
-          <p>Este detalle queda preparado para conectar módulos dependientes por evento.</p>
+          <p>Este detalle ya opera conectado con tipos de entrada y entradas emitidas.</p>
         </article>
       </div>
     </section>

@@ -7,7 +7,7 @@ import { EstadoEntrada } from './estado-entrada.enum';
 export class EntradaEntidad {
   @PrimaryGeneratedColumn('uuid') id: string;
   @Column({ unique: true }) identificador: string;
-  @ManyToOne(() => EventoEntidad) evento: EventoEntidad;
+  @ManyToOne(() => EventoEntidad, (evento) => evento.entradas) evento: EventoEntidad;
   @ManyToOne(() => TipoEntradaEntidad) tipoEntrada: TipoEntradaEntidad;
   @Column() titular: string;
   @Column({ type: 'enum', enum: EstadoEntrada, default: EstadoEntrada.EMITIDA }) estado: EstadoEntrada;

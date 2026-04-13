@@ -1,4 +1,5 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { EntradaEntidad } from '../entradas/entrada.entidad';
 import { TipoEntradaEntidad } from '../tipos-entrada/tipo-entrada.entidad';
 import { EstadoEvento } from './estado-evento.enum';
 
@@ -29,6 +30,7 @@ export class EventoEntidad {
   @Column({ name: 'observaciones_internas', type: 'text', nullable: true }) observacionesInternas?: string;
 
   @OneToMany(() => TipoEntradaEntidad, (tipoEntrada) => tipoEntrada.evento) tiposEntrada: TipoEntradaEntidad[];
+  @OneToMany(() => EntradaEntidad, (entrada) => entrada.evento) entradas: EntradaEntidad[];
 
   @CreateDateColumn({ name: 'creado_en' }) creadoEn: Date;
   @UpdateDateColumn({ name: 'actualizado_en' }) actualizadoEn: Date;

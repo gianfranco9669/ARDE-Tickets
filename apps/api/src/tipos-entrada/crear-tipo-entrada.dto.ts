@@ -9,6 +9,9 @@ export class CrearTipoEntradaDto {
   @IsInt() @Min(1) cupo: number;
   @IsDateString() desde: string;
   @IsDateString() hasta: string;
+  @IsString() horaDesde: string;
+  @IsString() horaHasta: string;
+  @IsInt() @Min(1) limitePorCompra: number;
   @IsBoolean() reingresoPermitido: boolean;
   @IsString() color: string;
   @IsBoolean() visible: boolean;

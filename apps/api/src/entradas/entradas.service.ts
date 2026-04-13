@@ -31,4 +31,14 @@ export class EntradasService {
       })
     );
   }
+
+  obtenerEmitidas(eventoId?: string) {
+    const where = eventoId ? { evento: { id: eventoId } } : {};
+    return this.entradasRepo.find({
+      where,
+      relations: ['tipoEntrada', 'evento'],
+      order: { fechaEmision: 'DESC' },
+      take: 200
+    });
+  }
 }
