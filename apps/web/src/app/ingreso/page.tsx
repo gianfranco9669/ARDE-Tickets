@@ -4,8 +4,8 @@ export default function IngresoPage() {
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr' }}>
           <div style={{ background: 'linear-gradient(135deg, #3A1717, #1E222B)', padding: 36 }}>
-            <small>ARDE · Control profesional de eventos</small>
-            <h1 style={{ fontSize: 44, margin: '12px 0' }}>Acceso a ARDE</h1>
+            <small>ARDE Tickets · Control profesional de eventos</small>
+            <h1 style={{ fontSize: 44, margin: '12px 0' }}>Acceso a ARDE Tickets</h1>
             <p className="texto-secundario">Ingreso flexible para operación real: producción, puerta, caja, RRPP y administración.</p>
             <ul>
               <li>Validaciones seguras y trazabilidad por rol.</li>
