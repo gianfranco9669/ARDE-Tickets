@@ -1,0 +1,13 @@
+{
+  "name": "arde-tickets",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @arde/web run dev",
+    "dev:api": "npm --workspace @arde/api run start:dev",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces"
+  }
+}
