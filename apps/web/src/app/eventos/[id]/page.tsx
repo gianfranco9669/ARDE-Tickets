@@ -18,8 +18,8 @@ export default async function DetalleEventoPage({ params }: { params: Promise<{ 
           <p>{evento.subtitulo}</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <a href={`/eventos/${evento.id}/tipos-entrada`}><button style={{ background: '#1d4ed8' }}>Tipos de entrada</button></a>
-          <a href={`/eventos/${evento.id}/entradas`}><button style={{ background: '#4b5563' }}>Entradas emitidas</button></a>
+          <a href={`/eventos/${evento.id}/tipos-entrada`}><button className="boton-secundario">Tipos de entrada</button></a>
+          <a href={`/eventos/${evento.id}/entradas`}><button className="boton-secundario">Entradas emitidas</button></a>
           <a href={`/eventos/${evento.id}/editar`}><button>Editar evento</button></a>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default async function DetalleEventoPage({ params }: { params: Promise<{ 
           <h3>Actividad comercial</h3>
           <p><strong>Ventas:</strong> ${evento.metricas?.ventasTotales?.toLocaleString('es-AR') ?? 0}</p>
           <p><strong>Accesos validados:</strong> {evento.metricas?.accesosValidados ?? 0}</p>
-          <hr style={{ borderColor: '#2f3647' }} />
+          <hr />
           <p>Este detalle ya opera conectado con tipos de entrada y entradas emitidas.</p>
         </article>
       </div>

@@ -24,7 +24,7 @@ export default function EventosPage() {
             <p>{evento.fecha} · {evento.horaInicio} · {evento.lugar}</p>
             <div style={{ display: 'flex', gap: 8 }}>
               <a href={`/eventos/${evento.id}`}><button>Ver detalle</button></a>
-              <a href={`/eventos/${evento.id}/editar`}><button style={{ background: '#374151' }}>Editar</button></a>
+              <a href={`/eventos/${evento.id}/editar`}><button className="boton-secundario">Editar</button></a>
             </div>
           </article>
         ))}

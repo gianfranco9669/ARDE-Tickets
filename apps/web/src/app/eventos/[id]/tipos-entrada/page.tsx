@@ -29,7 +29,7 @@ export default async function TiposEntradaEventoPage({ params }: { params: Promi
             <p>Cupo: {tipo.cupo} · Límite: {tipo.limitePorCompra} por compra</p>
             <p>Vigencia: {tipo.desde} a {tipo.hasta}</p>
             <p>Horario: {tipo.horaDesde} a {tipo.horaHasta}</p>
-            <a href={`/eventos/${id}/tipos-entrada/${tipo.id}/editar`}><button style={{ background: '#374151' }}>Editar</button></a>
+            <a href={`/eventos/${id}/tipos-entrada/${tipo.id}/editar`}><button className="boton-secundario">Editar</button></a>
           </article>
         ))}
       </div>

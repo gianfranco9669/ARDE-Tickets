@@ -11,7 +11,7 @@ export default function InicioPage() {
       <header className="header">
         <div>
           <h1>Inicio unificado</h1>
-          <p>Resumen operativo y económico en tiempo real.</p>
+          <p>Operación en tiempo real para gestión, control y decisiones rápidas.</p>
         </div>
         <select style={{ maxWidth: 280 }} defaultValue="arde-opening-2026">
           <option value="arde-opening-2026">ARDE Opening 2026</option>
@@ -19,9 +19,9 @@ export default function InicioPage() {
         </select>
       </header>
 
-      <div className="card" style={{ marginBottom: 16 }}>
+      <div className="card card-secundaria" style={{ marginBottom: 16 }}>
         <h2>Evento protagonista</h2>
-        <p>ARDE Opening 2026 - Sábado 18/04 · Estadio Central · Estado: publicado</p>
+        <p className="texto-secundario">ARDE Opening 2026 - Sábado 18/04 · Estadio Central · Estado: publicado</p>
       </div>
 
       <div className="grid grid-4" style={{ marginBottom: 16 }}>

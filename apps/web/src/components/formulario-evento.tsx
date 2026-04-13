@@ -46,7 +46,7 @@ export function FormularioEvento({ titulo, descripcion, evento, modo }: Props) {
           </div>
         </article>
 
-        <article className="card">
+        <article className="card card-secundaria">
           <h3>Ubicación y contenidos</h3>
           <div className="form-grid">
             <label>Lugar<input defaultValue={evento?.lugar} required /></label>

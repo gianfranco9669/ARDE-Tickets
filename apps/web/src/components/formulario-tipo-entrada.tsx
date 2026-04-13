@@ -19,7 +19,7 @@ export function FormularioTipoEntrada({ modo, tipoEntrada }: Props) {
         <button>{modo === 'crear' ? 'Guardar tipo' : 'Actualizar tipo'}</button>
       </div>
 
-      <form className="card form-grid">
+      <form className="card card-secundaria form-grid">
         <label>Tipo
           <select defaultValue={tipoEntrada?.tipo ?? 'general'}>{tipos.map((tipo) => <option key={tipo}>{tipo}</option>)}</select>
         </label>
@@ -31,7 +31,7 @@ export function FormularioTipoEntrada({ modo, tipoEntrada }: Props) {
         <label>Horario válido desde<input type="time" defaultValue={tipoEntrada?.horaDesde ?? '00:00'} /></label>
         <label>Horario válido hasta<input type="time" defaultValue={tipoEntrada?.horaHasta ?? '23:59'} /></label>
         <label>Límite por compra<input type="number" min={1} defaultValue={tipoEntrada?.limitePorCompra ?? 4} required /></label>
-        <label>Color identificatorio<input type="color" defaultValue={tipoEntrada?.color ?? '#ef4444'} /></label>
+        <label>Color identificatorio<input type="color" defaultValue={tipoEntrada?.color ?? '#e53935'} /></label>
         <label>Reingreso permitido
           <select defaultValue={String(tipoEntrada?.reingresoPermitido ?? false)}><option value="false">No</option><option value="true">Sí</option></select>
         </label>
