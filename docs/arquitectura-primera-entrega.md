@@ -1,28 +1,31 @@
 # ARDE · Arquitectura base corregida
 
-## 1) Castellano total
+## 1) Normalización total en castellano
 
-Se normalizó el dominio funcional en castellano para módulos, rutas API y textos visibles:
+Se renombró estructura interna para eliminar mezcla:
 
-- `autenticacion`
-- `usuarios`
-- `eventos`
-- `tipos-entrada`
-- `inicio`
-- `archivos`
+- Carpetas: `autenticacion`, `usuarios`, `eventos`, `tipos-entrada`, `entradas`, `inicio`, `archivos`.
+- Archivos y clases: controladores, módulos, servicios, DTOs, entidades y enums en castellano.
+- Rutas API coherentes: `/autenticacion`, `/usuarios`, `/eventos`, `/tipos-entrada`, `/entradas`, `/inicio`, `/archivos`.
 
-## 2) Autenticación multi-método (separada de autorización)
+## 2) Convención oficial de dominio
 
-### Autenticación (cómo ingresa)
+- **entrada**: unidad comercial/credencial emitida del evento.
+- **acceso**: validación o registro de ingreso al evento.
+- **ticket**: se elimina del dominio interno para evitar ambigüedad.
 
-- Google (prioridad 1)
-- Teléfono con OTP (prioridad 2)
-- Mail con link mágico o código (prioridad 3)
-- Credenciales tradicionales solo para escenarios administrativos (prioridad 4)
+## 3) Autenticación vs autorización
+
+### Autenticación (cómo entra)
+
+1. Google
+2. Teléfono con OTP
+3. Mail con link mágico o código
+4. Credenciales tradicionales (solo para perfiles administrativos)
 
 ### Autorización (qué puede hacer)
 
-Roles RBAC conservados:
+Roles RBAC:
 - superadmin
 - administrador
 - producción
@@ -31,25 +34,9 @@ Roles RBAC conservados:
 - RRPP
 - auditoría
 
-## 3) Flujo técnico implementado
+## 4) Flujo técnico implementado
 
 - `POST /api/autenticacion/iniciar`
-  - Arranca flujo por método elegido.
-  - En OTP/código genera desafío temporal y deja integración preparada.
 - `POST /api/autenticacion/verificar`
-  - Verifica código y emite `tokenAcceso` JWT.
-- Guardas de autorización por rol se mantienen con `JwtAuthGuard + RolesGuard`.
 
-## 4) UI de Ingreso
-
-La pantalla `/ingreso` reemplaza el login clásico:
-
-- identidad visual ARDE
-- botones claros por método de ingreso
-- opción administrativa de credenciales en bloque secundario
-
-## 5) Decisiones técnicas breves
-
-- Mantener JWT y RBAC para continuidad operacional.
-- Diseñar auth por desafíos para soportar OTP/link/código sin acoplar proveedor.
-- Dejar punto de extensión claro para Google OAuth y proveedores SMS/mail.
+Con desafíos temporales listos para integrar proveedores reales (OAuth Google, SMS, email).

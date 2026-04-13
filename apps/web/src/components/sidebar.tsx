@@ -1,8 +1,8 @@
 const items = [
   { etiqueta: 'Inicio', ruta: '/inicio' },
   { etiqueta: 'Eventos', ruta: '/eventos' },
-  { etiqueta: 'Entradas', ruta: '/entradas' },
-  { etiqueta: 'Tickets QR', ruta: '/tickets' },
+  { etiqueta: 'Tipos de entrada', ruta: '/entradas' },
+  { etiqueta: 'Entradas QR', ruta: '/entradas-qr' },
   { etiqueta: 'Accesos', ruta: '/accesos' },
   { etiqueta: 'Ventas', ruta: '/ventas' },
   { etiqueta: 'RRPP', ruta: '/rrpp' },

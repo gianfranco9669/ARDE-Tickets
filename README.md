@@ -1,35 +1,20 @@
-# ARDE Tickets
+# ARDE Plataforma
 
 Plataforma integral de gestión y acceso para eventos (modo Gestión + modo Acceso) en una sola aplicación.
 
 ## Estructura
 
-- `apps/web`: Frontend Next.js + TypeScript (experiencia completa en castellano).
-- `apps/api`: Backend NestJS + TypeScript + PostgreSQL (arquitectura modular).
+- `apps/web`: Frontend Next.js + TypeScript.
+- `apps/api`: Backend NestJS + TypeScript + PostgreSQL.
 
-## Base actual corregida
+## Convención oficial del dominio
 
-- Castellanización funcional (rutas y dominios clave).
-- Pantalla de **Ingreso a ARDE** rediseñada, abierta y moderna.
-- Estrategia de autenticación multi-método:
-  1. Google
-  2. Teléfono con OTP
-  3. Mail con link mágico o código
-  4. Credenciales (solo perfil administrativo cuando aplica)
-- Roles y permisos separados de la autenticación (autorización RBAC).
+- **entrada** = credencial comercial emitida.
+- **acceso** = validación de ingreso.
+- **ticket** = término descartado en código interno para mantener consistencia.
 
-## Módulos de primera entrega
+## Base implementada
 
-- Inicio unificado
-- Eventos
-- Tipos de entrada
-- Tickets con token seguro
-- Usuarios y roles
-- Archivos (flyers)
-
-## Próximos pasos
-
-1. Integrar proveedores reales: OAuth Google, SMS OTP y envío de links/códigos por mail.
-2. Persistir desafíos OTP/códigos en Redis.
-3. Incorporar refresh tokens + sesiones revocables.
-4. Migraciones SQL formales para producción.
+- Normalización completa del backend en castellano (carpetas, archivos, clases, enums, DTOs y rutas).
+- Ingreso moderno multi-método (Google, teléfono OTP, mail link/código, credenciales administrativas).
+- Separación explícita entre autenticación y autorización RBAC por rol.

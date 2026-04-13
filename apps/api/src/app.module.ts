@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ArchivosModule } from './archivos/uploads.module';
-import { AutenticacionModule } from './autenticacion/auth.module';
-import { InicioModule } from './inicio/dashboard.module';
-import { TiposEntradaModule } from './tipos-entrada/entry-types.module';
-import { EventosModule } from './eventos/events.module';
-import { TicketsModule } from './tickets/tickets.module';
-import { UsuariosModule } from './usuarios/users.module';
+import { ArchivosModule } from './archivos/archivos.module';
+import { AutenticacionModule } from './autenticacion/autenticacion.module';
+import { EntradasModule } from './entradas/entradas.module';
+import { EventosModule } from './eventos/eventos.module';
+import { InicioModule } from './inicio/inicio.module';
+import { TiposEntradaModule } from './tipos-entrada/tipos-entrada.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
   imports: [
@@ -29,7 +29,7 @@ import { UsuariosModule } from './usuarios/users.module';
     UsuariosModule,
     EventosModule,
     TiposEntradaModule,
-    TicketsModule,
+    EntradasModule,
     InicioModule,
     ArchivosModule
   ]

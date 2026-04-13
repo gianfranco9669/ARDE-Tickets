@@ -38,7 +38,7 @@ export default function InicioPage() {
           <h3>Actividad reciente</h3>
           <ul>
             <li>15:12 - Alta de RRPP "Camila R" con comisión 8%</li>
-            <li>15:01 - Validación manual ticket ARDE-8F13A2 en puerta Norte</li>
+            <li>15:01 - Validación manual entrada ARDE-8F13A2 en puerta Norte</li>
             <li>14:44 - Carga de gasto de producción: sonido principal</li>
           </ul>
         </article>
