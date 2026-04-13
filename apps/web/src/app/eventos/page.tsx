@@ -1,20 +1,33 @@
+import { eventosMock } from '../../lib/eventos-mock';
+
 export default function EventosPage() {
   return (
     <section>
       <div className="header">
-        <h1>Eventos</h1>
+        <div>
+          <h1>Eventos</h1>
+          <p>Administración central de eventos ARDE.</p>
+        </div>
         <a href="/eventos/nuevo"><button>Crear evento</button></a>
       </div>
-      <div className="card">
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr><th align="left">Nombre</th><th align="left">Fecha</th><th align="left">Estado</th><th align="left">Capacidad</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>ARDE Opening 2026</td><td>18/04/2026</td><td>Publicado</td><td>3.500</td></tr>
-            <tr><td>ARDE After Session</td><td>25/04/2026</td><td>Programado</td><td>1.200</td></tr>
-          </tbody>
-        </table>
+
+      <div className="card" style={{ marginBottom: 16 }}>
+        <strong>Próximamente conectado:</strong> tipos de entrada, ventas, accesos, invitados, RRPP, caja, gastos y reportes por evento.
+      </div>
+
+      <div className="grid" style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}>
+        {eventosMock.map((evento) => (
+          <article key={evento.id} className="card">
+            <small>{evento.estado.toUpperCase()}</small>
+            <h3>{evento.nombre}</h3>
+            <p>{evento.subtitulo}</p>
+            <p>{evento.fecha} · {evento.horaInicio} · {evento.lugar}</p>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <a href={`/eventos/${evento.id}`}><button>Ver detalle</button></a>
+              <a href={`/eventos/${evento.id}/editar`}><button style={{ background: '#374151' }}>Editar</button></a>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
