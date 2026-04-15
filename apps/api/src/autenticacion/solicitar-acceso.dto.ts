@@ -10,7 +10,7 @@ export enum MetodoIngreso {
 
 export class SolicitarAccesoDto {
   @IsEnum(MetodoIngreso)
-  metodo: MetodoIngreso;
+  metodo!: MetodoIngreso;
 
   @IsOptional()
   @IsString()
