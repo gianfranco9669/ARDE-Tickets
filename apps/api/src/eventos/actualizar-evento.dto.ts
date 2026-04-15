@@ -17,10 +17,9 @@ export class ActualizarEventoDto {
   @IsOptional() @IsString() @MaxLength(280) descripcionCorta?: string;
   @IsOptional() @IsString() descripcionCompleta?: string;
 
-  @IsOptional() @IsDateString() fecha?: string;
-  @IsOptional() @IsString() horaApertura?: string;
-  @IsOptional() @IsString() horaInicio?: string;
-  @IsOptional() @IsString() horaCierre?: string;
+  @IsOptional() @IsDateString() aperturaEn?: string;
+  @IsOptional() @IsDateString() inicioEn?: string;
+  @IsOptional() @IsDateString() cierreEn?: string;
 
   @IsOptional() @IsString() lugar?: string;
   @IsOptional() @IsString() direccion?: string;

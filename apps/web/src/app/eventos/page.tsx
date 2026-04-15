@@ -21,7 +21,7 @@ export default function EventosPage() {
             <small>{evento.estado.toUpperCase()}</small>
             <h3>{evento.nombre}</h3>
             <p>{evento.subtitulo}</p>
-            <p>{evento.fecha} · {evento.horaInicio} · {evento.lugar}</p>
+            <p>{new Date(evento.inicioEn).toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' })} · {evento.lugar}</p>
             <div style={{ display: 'flex', gap: 8 }}>
               <a href={`/eventos/${evento.id}`}><button>Ver detalle</button></a>
               <a href={`/eventos/${evento.id}/editar`}><button className="boton-secundario">Editar</button></a>

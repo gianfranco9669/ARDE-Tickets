@@ -29,16 +29,13 @@ export class CrearEventoDto {
   descripcionCompleta?: string;
 
   @IsDateString()
-  fecha!: string;
+  aperturaEn!: string;
 
-  @IsString()
-  horaApertura!: string;
+  @IsDateString()
+  inicioEn!: string;
 
-  @IsString()
-  horaInicio!: string;
-
-  @IsString()
-  horaCierre!: string;
+  @IsDateString()
+  cierreEn!: string;
 
   @IsString()
   lugar!: string;

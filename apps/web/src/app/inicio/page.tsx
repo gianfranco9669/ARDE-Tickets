@@ -1,3 +1,5 @@
+import { AlertTriangle, BellRing, CheckCircle2, Clock3, Settings2, ShoppingCart } from 'lucide-react';
+
 const metricas = [
   { label: 'Ventas netas', value: '$ 1.254.000', trend: '+18% vs semana anterior' },
   { label: 'Entradas emitidas', value: '2.450', trend: '72% de capacidad total' },
@@ -6,10 +8,10 @@ const metricas = [
 ];
 
 const actividad = [
-  { icono: '✅', texto: 'Entrada ARDE-8F13A2 validada en Puerta Norte', hora: '15:01', tipo: 'Acceso' },
-  { icono: '💸', texto: 'Venta presencial lote VIP Early x2', hora: '14:55', tipo: 'Venta' },
-  { icono: '🧩', texto: 'Tipo de entrada "General Fase 3" actualizado', hora: '14:40', tipo: 'Configuración' },
-  { icono: '🤝', texto: 'RRPP Camila R. superó meta diaria', hora: '14:12', tipo: 'RRPP' }
+  { icono: CheckCircle2, texto: 'Entrada ARDE-8F13A2 validada en Puerta Norte', hora: '15:01', tipo: 'Acceso' },
+  { icono: ShoppingCart, texto: 'Venta presencial lote VIP Early x2', hora: '14:55', tipo: 'Venta' },
+  { icono: Settings2, texto: 'Tipo de entrada "General Fase 3" actualizado', hora: '14:40', tipo: 'Configuración' },
+  { icono: BellRing, texto: 'RRPP Camila R. superó meta diaria', hora: '14:12', tipo: 'RRPP' }
 ];
 
 export default function InicioPage() {
@@ -59,21 +61,24 @@ export default function InicioPage() {
       <section className="grid" style={{ gridTemplateColumns: '2fr 1fr' }}>
         <article className="card">
           <h3>Actividad reciente</h3>
-          {actividad.map((item) => (
-            <div className="feed-item" key={`${item.hora}-${item.texto}`}>
-              <div>{item.icono}</div>
-              <div>
-                <div>{item.texto}</div>
-                <small>{item.tipo}</small>
+          {actividad.map((item) => {
+            const Icono = item.icono;
+            return (
+              <div className="feed-item" key={`${item.hora}-${item.texto}`}>
+                <div><Icono size={16} /></div>
+                <div>
+                  <div>{item.texto}</div>
+                  <small>{item.tipo}</small>
+                </div>
+                <small><Clock3 size={14} style={{ marginRight: 4 }} />{item.hora}</small>
               </div>
-              <small>{item.hora}</small>
-            </div>
-          ))}
+            );
+          })}
         </article>
 
         <article className="card card-secundaria">
           <h3>Alertas operativas</h3>
-          <div className="alerta critica"><strong>Crítica:</strong> 2 validadores offline en puerta Norte.</div>
+          <div className="alerta critica"><strong><AlertTriangle size={14} /> Crítica:</strong> 2 validadores offline en puerta Norte.</div>
           <div className="alerta atencion"><strong>Atención:</strong> cupo VIP al 92%.</div>
           <div className="alerta pendiente"><strong>Pendiente:</strong> cierre de caja del evento anterior.</div>
           <div className="alerta info"><strong>Info:</strong> corte parcial de reporte RRPP disponible.</div>

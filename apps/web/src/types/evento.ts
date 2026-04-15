@@ -15,10 +15,9 @@ export type Evento = {
   subtitulo?: string;
   descripcionCorta?: string;
   descripcionCompleta?: string;
-  fecha: string;
-  horaApertura: string;
-  horaInicio: string;
-  horaCierre: string;
+  aperturaEn: string;
+  inicioEn: string;
+  cierreEn: string;
   lugar: string;
   direccion: string;
   capacidadTotal: number;

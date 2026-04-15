@@ -35,8 +35,9 @@ export default async function DetalleEventoPage({ params }: { params: Promise<{ 
         <article className="card">
           <h3>Resumen operativo</h3>
           <p>{evento.descripcionCompleta ?? evento.descripcionCorta}</p>
-          <p><strong>Fecha:</strong> {evento.fecha}</p>
-          <p><strong>Horario:</strong> {evento.horaApertura} / {evento.horaInicio} / {evento.horaCierre}</p>
+          <p><strong>Apertura:</strong> {new Date(evento.aperturaEn).toLocaleString('es-AR')}</p>
+          <p><strong>Inicio:</strong> {new Date(evento.inicioEn).toLocaleString('es-AR')}</p>
+          <p><strong>Cierre:</strong> {new Date(evento.cierreEn).toLocaleString('es-AR')}</p>
           <p><strong>Lugar:</strong> {evento.lugar}</p>
           <p><strong>Dirección:</strong> {evento.direccion}</p>
           <p><strong>Capacidad:</strong> {evento.capacidadTotal}</p>

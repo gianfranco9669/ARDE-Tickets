@@ -20,17 +20,14 @@ export class EventoEntidad {
   @Column({ name: 'descripcion_completa', type: 'text', nullable: true })
   descripcionCompleta?: string;
 
-  @Column({ type: 'date' })
-  fecha!: string;
+  @Column({ name: 'apertura_en', type: 'timestamp' })
+  aperturaEn!: Date;
 
-  @Column({ name: 'hora_apertura', type: 'time' })
-  horaApertura!: string;
+  @Column({ name: 'inicio_en', type: 'timestamp' })
+  inicioEn!: Date;
 
-  @Column({ name: 'hora_inicio', type: 'time' })
-  horaInicio!: string;
-
-  @Column({ name: 'hora_cierre', type: 'time' })
-  horaCierre!: string;
+  @Column({ name: 'cierre_en', type: 'timestamp' })
+  cierreEn!: Date;
 
   @Column()
   lugar!: string;
