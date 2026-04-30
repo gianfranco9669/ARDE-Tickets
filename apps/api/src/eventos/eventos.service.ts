@@ -68,6 +68,16 @@ export class EventosService {
     return this.eventosRepo.save(evento);
   }
 
+  async eliminar(id: string) {
+    const evento = await this.obtenerUno(id);
+    await this.eventosRepo.remove(evento);
+
+    return {
+      ok: true,
+      mensaje: 'Evento eliminado correctamente'
+    };
+  }
+
   async actualizarFlyer(id: string, rutaFlyer: string) {
     const evento = await this.eventosRepo.findOneBy({ id });
     if (!evento) throw new NotFoundException('Evento no encontrado');
@@ -84,8 +94,8 @@ export class EventosService {
       throw new BadRequestException('Las fechas de operación del evento son inválidas');
     }
 
-    if (!(apertura < inicio && inicio < cierre)) {
-      throw new BadRequestException('La operación del evento debe cumplir aperturaEn < inicioEn < cierreEn');
+    if (!(apertura <= inicio && inicio < cierre)) {
+      throw new BadRequestException('La operación del evento debe cumplir aperturaEn <= inicioEn < cierreEn');
     }
   }
 }

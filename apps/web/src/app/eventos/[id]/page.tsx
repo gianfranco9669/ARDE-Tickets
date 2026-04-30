@@ -1,14 +1,42 @@
 import { notFound } from 'next/navigation';
-import { obtenerEntradasPorEvento, obtenerEventoPorId, obtenerTiposPorEvento } from '../../../lib/eventos-mock';
 
-export default async function DetalleEventoPage({ params }: { params: Promise<{ id: string }> }) {
+type EventoApi = {
+  id: string;
+  nombre: string;
+  subtitulo?: string;
+  descripcionCorta?: string;
+  descripcionCompleta?: string;
+  aperturaEn: string;
+  inicioEn: string;
+  cierreEn: string;
+  estado: string;
+  lugar: string;
+  direccion: string;
+  capacidadTotal: number;
+  edadMinima: number;
+  observacionesInternas?: string;
+};
+
+async function obtenerEventoPorId(id: string): Promise<EventoApi | null> {
+  const response = await fetch(`http://localhost:4001/api/eventos/${id}`, {
+    cache: 'no-store'
+  });
+
+  if (response.status === 404) return null;
+  if (!response.ok) throw new Error('No se pudo cargar el evento');
+
+  return response.json();
+}
+
+export default async function DetalleEventoPage({
+  params
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
-  const evento = obtenerEventoPorId(id);
-  if (!evento) return notFound();
+  const evento = await obtenerEventoPorId(id);
 
-  const tipos = obtenerTiposPorEvento(id);
-  const entradas = obtenerEntradasPorEvento(id);
-  const entradasValidadas = entradas.filter((entrada) => entrada.estado === 'validada').length;
+  if (!evento) return notFound();
 
   return (
     <section>
@@ -18,40 +46,65 @@ export default async function DetalleEventoPage({ params }: { params: Promise<{ 
           <p>{evento.subtitulo}</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <a href={`/eventos/${evento.id}/tipos-entrada`}><button className="boton-secundario">Tipos de entrada</button></a>
-          <a href={`/eventos/${evento.id}/entradas`}><button className="boton-secundario">Entradas emitidas</button></a>
-          <a href={`/eventos/${evento.id}/editar`}><button>Editar evento</button></a>
+          <a href={`/eventos/${evento.id}/tipos-entrada`}>
+            <button className="boton-secundario">Tipos de entrada</button>
+          </a>
+          <a href={`/eventos/${evento.id}/entradas`}>
+            <button className="boton-secundario">Entradas emitidas</button>
+          </a>
+          <a href={`/eventos/${evento.id}/editar`}>
+            <button>Editar evento</button>
+          </a>
         </div>
-      </div>
-
-      <div className="grid grid-4" style={{ marginBottom: 16 }}>
-        <article className="card"><small>Tipos activos</small><div className="metric">{tipos.length}</div></article>
-        <article className="card"><small>Entradas emitidas</small><div className="metric">{entradas.length}</div></article>
-        <article className="card"><small>Entradas validadas</small><div className="metric">{entradasValidadas}</div></article>
-        <article className="card"><small>Validación</small><div className="metric">{entradas.length ? Math.round((entradasValidadas / entradas.length) * 100) : 0}%</div></article>
       </div>
 
       <div className="grid" style={{ gridTemplateColumns: '2fr 1fr' }}>
         <article className="card">
           <h3>Resumen operativo</h3>
-          <p>{evento.descripcionCompleta ?? evento.descripcionCorta}</p>
-          <p><strong>Apertura:</strong> {new Date(evento.aperturaEn).toLocaleString('es-AR')}</p>
-          <p><strong>Inicio:</strong> {new Date(evento.inicioEn).toLocaleString('es-AR')}</p>
-          <p><strong>Cierre:</strong> {new Date(evento.cierreEn).toLocaleString('es-AR')}</p>
-          <p><strong>Lugar:</strong> {evento.lugar}</p>
-          <p><strong>Dirección:</strong> {evento.direccion}</p>
-          <p><strong>Capacidad:</strong> {evento.capacidadTotal}</p>
-          <p><strong>Edad mínima:</strong> {evento.edadMinima}+</p>
-          <p><strong>Estado:</strong> {evento.estado}</p>
-          <p><strong>Observaciones internas:</strong> {evento.observacionesInternas ?? 'Sin observaciones'}</p>
+          <p>{evento.descripcionCompleta ?? evento.descripcionCorta ?? 'Sin descripción'}</p>
+          <p>
+            <strong>Apertura:</strong> {new Date(evento.aperturaEn).toLocaleString('es-AR')}
+          </p>
+          <p>
+            <strong>Inicio:</strong> {new Date(evento.inicioEn).toLocaleString('es-AR')}
+          </p>
+          <p>
+            <strong>Cierre:</strong> {new Date(evento.cierreEn).toLocaleString('es-AR')}
+          </p>
+          <p>
+            <strong>Lugar:</strong> {evento.lugar}
+          </p>
+          <p>
+            <strong>Dirección:</strong> {evento.direccion}
+          </p>
+          <p>
+            <strong>Capacidad:</strong> {evento.capacidadTotal}
+          </p>
+          <p>
+            <strong>Edad mínima:</strong> {evento.edadMinima}+
+          </p>
+          <p>
+            <strong>Estado:</strong> {evento.estado}
+          </p>
+          <p>
+            <strong>Observaciones internas:</strong>{' '}
+            {evento.observacionesInternas ?? 'Sin observaciones'}
+          </p>
         </article>
 
         <article className="card">
           <h3>Actividad comercial</h3>
-          <p><strong>Ventas:</strong> ${evento.metricas?.ventasTotales?.toLocaleString('es-AR') ?? 0}</p>
-          <p><strong>Accesos validados:</strong> {evento.metricas?.accesosValidados ?? 0}</p>
+          <p>
+            <strong>Ventas:</strong> Próximamente
+          </p>
+          <p>
+            <strong>Accesos validados:</strong> Próximamente
+          </p>
           <hr />
-          <p>Este detalle ya opera conectado con tipos de entrada y entradas emitidas.</p>
+          <p>
+            Este detalle ya quedó conectado al backend real de eventos. El siguiente paso es
+            vincular tipos de entrada, entradas emitidas y métricas comerciales.
+          </p>
         </article>
       </div>
     </section>
