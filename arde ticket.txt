@@ -1,0 +1,36 @@
+Comandos que usa cualquiera de los dos antes de empezar a tocar
+Siempre antes de editar algo:
+cd "$env:USERPROFILE\Desktop\ARDE Tickets"
+git checkout codex/build-arde-event-management-platform
+git pull origin codex/build-arde-event-management-platform
+
+Eso trae lo último que haya subido el otro.
+
+Cuando uno termina de modificar algo
+
+Después de editar en VSCode, guardar y probar, hace:
+
+cd "$env:USERPROFILE\Desktop\ARDE Tickets"
+git status
+git add .
+git commit -m "Describe los cambios realizados"
+git push origin codex/build-arde-event-management-platform
+
+Ejemplo:
+
+git commit -m "Mejora formulario de eventos"
+Entonces el flujo diario sería así
+Si tu hermano va a trabajar
+
+Primero trae lo último:
+
+cd "$env:USERPROFILE\Desktop\ARDE Tickets"
+git pull origin codex/build-arde-event-management-platform
+
+Modifica archivos.
+
+Después sube:
+
+git add .
+git commit -m "Actualiza pantalla de eventos"
+git push origin codex/build-arde-event-management-platform
